@@ -1,0 +1,19 @@
+# dependencies
+/client/node_modules
+/server/node_modules
+
+# build output
+/server/dist
+
+# uploaded files
+/uploads
+
+# environment variables
+.env
+
+# IDE files
+/.vscode
+/.idea
+
+# OS files
+.DS_Store
