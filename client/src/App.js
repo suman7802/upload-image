@@ -7,16 +7,6 @@ export default function App() {
   const [signatureFile, setSignatureFile] = useState(null);
   const [passPhotoFile, setPassPhotoFile] = useState(null);
 
-  const handleSignatureChange = (event) => {
-    const file = event.target.files[0];
-    setSignatureFile(file);
-  };
-
-  const handlePassPhotoChange = (event) => {
-    const file = event.target.files[0];
-    setPassPhotoFile(file);
-  };
-
   function ConvertIntoBase64(file) {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -71,14 +61,12 @@ export default function App() {
           <img src={avatar.img} alt="avatar" />
         </div>
       </label>
-
       <input
         type="file"
         id="InputAvatar"
         className="Input hidden"
         onChange={(e) => HandelAvatar(e.target.files[0])}
       />
-
       <input
         type="text"
         placeholder="Name"
@@ -86,30 +74,36 @@ export default function App() {
         onChange={(e) => HandleName(e)}
         className="p-1 text-center"
       />
-
-      <label htmlFor="signature" className="block">
-        signature
+      <label
+        htmlFor="signature"
+        className="block"
+        style={{color: signatureFile && 'blue'}}>
+        Signature
       </label>
       <input
         type="file"
         id="signature"
         name="signature"
         className="hidden"
-        onChange={handleSignatureChange}
+        onChange={(e) => setSignatureFile(e.target.files[0])}
       />
 
-      <label htmlFor="passPhoto" className="block">
-        pass photo
+      <label
+        htmlFor="passPhoto"
+        className="block"
+        style={{color: passPhotoFile && 'blue'}}>
+        PassPhoto
       </label>
       <input
         type="file"
         id="passPhoto"
         name="passPhoto"
         className="hidden"
-        onChange={handlePassPhotoChange}
+        onChange={(e) => setPassPhotoFile(e.target.files[0])}
       />
-
-      <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      {avatar && name && signatureFile && passPhotoFile && (
+        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      )}
     </form>
   );
 }
