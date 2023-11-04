@@ -6,7 +6,8 @@
 /server/dist
 
 # uploaded files
-/uploads
+/client/public/pictures
+/server/uploads
 
 # environment variables
 .env
